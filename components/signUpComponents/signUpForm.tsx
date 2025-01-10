@@ -1,11 +1,13 @@
 import { View, Text, TouchableOpacity, ToastAndroid, Alert } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Input from "../common/input";
 import Button from "../common/button";
 import { router } from "expo-router";
 import { toast } from "sonner";
 import Toast from "react-native-toast-message";
+import axios from 'axios';
+import { User } from "@/store";
 
 export default function SignUpForm() {
   const userNameRef = useRef<string>("");
@@ -14,6 +16,18 @@ export default function SignUpForm() {
 
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const [allUser, setAllUser] = useState<User[]>([]);
+
+  async function getAllUsername() {
+    try {
+      const response = await axios.get("http://localhost:3000/users",);
+      console.log(response.data);
+      setAllUser(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
     const validateForm = () => {
@@ -34,6 +48,14 @@ export default function SignUpForm() {
           alert("Validation Error: Password must be at least 6 characters.");
           return false;
         }
+
+        let nameUsed = allUser.find( user => user.username === userName )
+        if (nameUsed) {
+            Alert.alert("No luck", "This username is taken");
+            alert("The user name is already taken");
+            return false;
+        
+        }
         return true;
       };
 
@@ -45,12 +67,28 @@ export default function SignUpForm() {
   };
 
   // Fonction de soumission du formulaire
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
+        try {
+             await axios.post("http://localhost:3000/users",{
+                username: userName,
+                email: email,
+                password: password
+             });
+          } catch (error) {
+            console.error(error);
+          }
       // Formulaire valide, redirection vers la page suivante
       router.push("/application");
     }
   };
+
+  useEffect(() => {
+    getAllUsername()
+  
+
+  }, [])
+  
 
   return (
     <View className=" flex flex-col w-[90%] md:w-[512px] gap-5 border border-blue-600 rounded pt-8 p-3">
@@ -106,7 +144,6 @@ export default function SignUpForm() {
         </Text>
       </Text>
 
-      <Text>{password}</Text>
     </View>
   );
 }
