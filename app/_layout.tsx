@@ -9,6 +9,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
+// import Toast from 'react-native-toast-message';
+
+// import { Toaster, toast } from 'sonner'
 
 import "../global.css";
 
@@ -35,23 +38,20 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      {/* <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="" options={{ headerShown: false }} />
 
-        <Stack.Screen name="+not-found" />
-      </Stack> */}
 
       <Stack
         screenOptions={{
           headerShown: false,
         }}
       >
+
         <Stack.Screen name="(auth)/sign-in" />
         <Stack.Screen name="(auth)/sign-up" />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
+
     </ThemeProvider>
   );
 }
