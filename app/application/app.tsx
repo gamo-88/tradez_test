@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import ScreenWrapper from '@/components/common/screenWrapper'
 
 export default function AppScreen() {
   return (
-    <View>
+    <ScreenWrapper>
       <Text>app</Text>
-    </View>
+    </ScreenWrapper>
   )
 }

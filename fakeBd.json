@@ -1,6 +1,65 @@
 {
   "users": [
-
+    {
+      "id": "49d4",
+      "username": "gamo",
+      "email": "gamo@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "2468",
+      "username": "gamou",
+      "email": "gamo@mail.com",
+      "password": "1234567"
+    },
+    {
+      "id": "5e48",
+      "username": "gama",
+      "email": "fde@mail.com",
+      "password": "123456"
+    },
+    {
+      "id": "403a",
+      "username": "moga",
+      "email": "moga@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "fb37",
+      "username": "mogaq",
+      "email": "moga@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "7538",
+      "username": "Man",
+      "email": "Man@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "5bda",
+      "username": "Try",
+      "email": "Try@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "3883",
+      "username": "Try",
+      "email": "Try@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "7398",
+      "username": "Tryu",
+      "email": "Truy@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "6969",
+      "username": "Tre",
+      "email": "tre@mail.com",
+      "password": "123456"
+    }
   ],
   "comments": [
     {

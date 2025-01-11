@@ -14,8 +14,11 @@ import "react-native-reanimated";
 // import { Toaster, toast } from 'sonner'
 
 import "../global.css";
+import { Provider } from 'react-redux';  // Importer le Provider
+import { persistor, store } from '../store';
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { PersistGate } from "redux-persist/integration/react";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -39,7 +42,8 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 
-
+<Provider store={store}>
+<PersistGate loading={null} persistor={persistor}>
       <Stack
         screenOptions={{
           headerShown: false,
@@ -51,6 +55,10 @@ export default function RootLayout() {
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
+
+      </PersistGate>
+
+      </Provider>
 
     </ThemeProvider>
   );

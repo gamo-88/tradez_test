@@ -1,53 +1,86 @@
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert, Platform } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Input from "../common/input";
 import Button from "../common/button";
 import { router } from "expo-router";
+import axios from "axios";
+
+import { useDispatch } from 'react-redux';  // Importer useDispatch
+import { setCurrentUser } from '../../userSlice';  // Importer l'action
 
 export default function SignInForm() {
-  const userNameRef = useRef<string>("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-      const validateForm = () => {
-          if (!userName) {
-            Alert.alert("Validation Error: ", "Please enter your name.");
-            alert("Validation Error: Please enter your name.")
-  //         Toast.show({
-  //             type: 'info',
-  //             text1: 'Hello',
-  //             text2: 'This is some something '
-  //           });
-  //  toast.info("fill well")
-            return false;
-          }
+  const dispatch = useDispatch();  // Initialiser le dispatch
 
-          if (!password || password.length < 6) {
-            Alert.alert("Validation Error", "Password must be at least 6 characters.");
-            alert("Validation Error: Password must be at least 6 characters.");
-            return false;
-          }
-          return true;
-        };
+  // Validation du formulaire
+  const validateForm = () => {
+    if (!userName) {
+      Alert.alert("Validation Error: ", "Please enter your name.");
+      return false;
+    }
 
+    if (!password || password.length < 6) {
+      Alert.alert("Validation Error", "Password must be at least 6 characters.");
+      return false;
+    }
+    return true;
+  };
 
-          // Fonction de soumission du formulaire
-  const handleSubmit = () => {
+  // Fonction pour obtenir l'URL API en fonction de la plateforme
+  const getApiUrl = () => {
+    if (Platform.OS === "web") {
+      return "http://localhost:3000"; 
+    }
+    // Pour mobile, utilisez l'IP locale de votre machine
+    return process.env.EXPO_PUBLIC_IP_API_URL; 
+  };
+
+  // Fonction de soumission du formulaire
+  const handleSubmit = async () => {
     if (validateForm()) {
-      // Formulaire valide, redirection vers la page suivante
-      router.push("/application");
+      try {
+        const response = await axios.get(
+          `${getApiUrl()}/users?username=${userName}`
+        );
+console.log(response.status)
+        if (response.data.length === 0) {
+          Alert.alert("Wrong credentials", "No user found with this username.");
+        } else {
+          // Vérification du mot de passe
+          const user = response.data[0]; 
+
+          if (user.password === password) {
+            // Si le mot de passe est correct, on connecte l'utilisateur et on passe a l'index de l'app 
+            dispatch(setCurrentUser({
+              username: user.username,
+              email: user.email,
+              isConnected: true,
+            }));
+            router.push("/application");
+          } else {
+            Alert.alert("Wrong credentials", "Incorrect password.");
+          }
+        }
+      } catch (error) {
+        console.log(error);
+        Alert.alert("Error", "An error occurred while processing your request.");
+      }
     }
   };
+
   return (
-    <View className=" flex flex-col w-[90%] md:w-[512px] gap-5 border border-blue-600 rounded pt-8 p-5">
+    <View className="flex flex-col w-[90%] md:w-[512px] gap-5 border border-blue-600 rounded pt-8 p-5">
       <Input
         icon={<Ionicons name="person-outline" size={28} />}
         value={userName}
-        placeholder="name"
+        placeholder="Name"
         onChangeText={(value: string) => setUserName(value)}
       />
+
       <View className="relative">
         <Input
           icon={<Ionicons name="lock-closed-outline" size={28} />}
@@ -76,17 +109,14 @@ export default function SignInForm() {
       />
 
       <Text className="text-slate-600">
-        Don't have an account?
+        Don't have an account?{" "}
         <Text
           onPress={() => router.push("/(auth)/sign-up")}
           className="text-blue-600 font-bold"
         >
-          {" "}
           Sign Up
         </Text>
       </Text>
-
-      <Text>{password}</Text>
     </View>
   );
 }

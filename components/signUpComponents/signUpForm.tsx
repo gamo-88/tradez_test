@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ToastAndroid, Alert } from "react-native";
+import { View, Text, TouchableOpacity, ToastAndroid, Alert, Platform } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useEffect, useRef, useState } from "react";
 import Input from "../common/input";
@@ -7,10 +7,18 @@ import { router } from "expo-router";
 import { toast } from "sonner";
 import Toast from "react-native-toast-message";
 import axios from 'axios';
-import { User } from "@/store";
+// import { User } from "@/store";
+import { useDispatch } from 'react-redux';  
+import { setCurrentUser } from '../../userSlice'; 
+
+export interface User {
+    username: string;
+    email: string;
+    password: string;
+  }
+
 
 export default function SignUpForm() {
-  const userNameRef = useRef<string>("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -19,9 +27,20 @@ export default function SignUpForm() {
 
   const [allUser, setAllUser] = useState<User[]>([]);
 
+  const dispatch = useDispatch();
+
+  const getApiUrl = () => {
+    if (Platform.OS === "web") {
+        // Utilisation de localhost pour le web
+      return "http://localhost:3000"; 
+    }
+
+    return process.env.EXPO_PUBLIC_IP_API_URL; 
+  };
+
   async function getAllUsername() {
     try {
-      const response = await axios.get("http://localhost:3000/users",);
+      const response = await axios.get(`${getApiUrl()}/users`,);
       console.log(response.data);
       setAllUser(response.data)
     } catch (error) {
@@ -34,15 +53,15 @@ export default function SignUpForm() {
         if (!userName) {
           Alert.alert("Validation Error: ", "Please enter your name.");
           alert("Validation Error: Please enter your name.")
-
           return false;
         }
+
         if (!email || !validateEmail(email)) {
           Alert.alert("Validation Error: ", "Please enter a valid email.");
           alert("Validation Error: Please enter a valid email.");
-
           return false;
         }
+
         if (!password || password.length < 6) {
           Alert.alert("Validation Error", "Password must be at least 6 characters.");
           alert("Validation Error: Password must be at least 6 characters.");
@@ -54,12 +73,11 @@ export default function SignUpForm() {
             Alert.alert("No luck", "This username is taken");
             alert("The user name is already taken");
             return false;
-        
         }
+
+
         return true;
       };
-
-
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -70,16 +88,25 @@ export default function SignUpForm() {
   const handleSubmit = async () => {
     if (validateForm()) {
         try {
-             await axios.post("http://localhost:3000/users",{
+            const response = await axios.post(`${getApiUrl()}/users`,{
                 username: userName,
                 email: email,
                 password: password
              });
+             console.log(response.status)
+             if (response.status === 201){
+                            dispatch(setCurrentUser({
+                              username: userName,
+                              email: email,
+                              isConnected: true,
+                            }));
+                router.push("/application");
+
+             }
           } catch (error) {
             console.error(error);
           }
-      // Formulaire valide, redirection vers la page suivante
-      router.push("/application");
+          
     }
   };
 
