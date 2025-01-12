@@ -28,8 +28,8 @@ export default function WelcomeScreen() {
           <Button
             title="Sign In"
             onPress={() => router.push("/(auth)/sign-in")}
-            buttonStyleInTailwind="hover:bg-blue-600 p-3 w-[40%]  border border-blue-600  rounded md:w-fit md:h-fit"
-            textStyleInTailwind="text-blue-600  text-xl text-center font-bold hover:text-white"
+            buttonStyleInTailwind="hover:bg-blue-600  w-[40%]  border border-blue-600  rounded md:w-fit md:h-fit"
+            textStyleInTailwind="text-blue-600 p-3  text-xl text-center font-bold hover:text-white"
           />
                       <Button
             title="Start Now"
@@ -54,7 +54,7 @@ export default function WelcomeScreen() {
             <Button
             title="Start Now"
             onPress={() => router.push("/(auth)/sign-up")}
-            buttonStyleInTailwind="bg-blue-600  p-3 w-[40%] my-2  rounded"
+            buttonStyleInTailwind="bg-blue-600  p-3 w-[40%] my-2  rounded md:w-fit md:h-fit"
             textStyleInTailwind="text-white text-xl text-center font-bold"
           />
                       <Text className="text-center font-bold text-lg mt-6">

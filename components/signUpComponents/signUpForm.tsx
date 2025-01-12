@@ -9,19 +9,16 @@ import Toast from "react-native-toast-message";
 import axios from 'axios';
 // import { User } from "@/store";
 import { useDispatch } from 'react-redux';  
-import { setCurrentUser } from '../../userSlice'; 
+import { setCurrentUser, User } from '../../userSlice'; 
 
-export interface User {
-    username: string;
-    email: string;
-    password: string;
-  }
+
 
 
 export default function SignUpForm() {
+
+  const userId = Date.now().toString();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -89,16 +86,22 @@ export default function SignUpForm() {
     if (validateForm()) {
         try {
             const response = await axios.post(`${getApiUrl()}/users`,{
-                username: userName,
-                email: email,
-                password: password
+                username: userName.trim(),
+                email: email.trim(),
+                password: password.trim()
              });
              console.log(response.status)
              if (response.status === 201){
+              console.log(response.data)
                             dispatch(setCurrentUser({
-                              username: userName,
-                              email: email,
+                              id: userId,
+                              username: userName.trim(),
+                              email: email.trim(),
                               isConnected: true,
+                              password: '',
+                              phone: 'Not define yet',
+                              address: 'Not define yet',
+                              bio: 'Not define yet',
                             }));
                 router.push("/application");
 

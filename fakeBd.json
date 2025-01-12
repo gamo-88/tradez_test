@@ -4,13 +4,19 @@
       "id": "49d4",
       "username": "gamo",
       "email": "gamo@gmail.com",
-      "password": "123456"
+      "password": "",
+      "phone": "update phone",
+      "address": "update Address",
+      "bio": "updated bio"
     },
     {
       "id": "2468",
       "username": "gamou",
       "email": "gamo@mail.com",
-      "password": "1234567"
+      "password": "",
+      "phone": "Not define yet",
+      "address": "Not define yet",
+      "bio": "Not define yet"
     },
     {
       "id": "5e48",
@@ -22,64 +28,63 @@
       "id": "403a",
       "username": "moga",
       "email": "moga@gmail.com",
+      "password": "123456",
+      "phone": "6432598",
+      "address": "Avenu Kennedy",
+      "bio": "Je suis une personne qui adore les do"
+    },
+    {
+      "id": "8671",
+      "username": "tarantino",
+      "email": "tarantino@gmail.com",
       "password": "123456"
     },
     {
-      "id": "fb37",
-      "username": "mogaq",
+      "id": "4303",
+      "username": "rand",
+      "email": "rand@mail.com",
+      "password": "",
+      "phone": "Not define up",
+      "address": "Not define ip",
+      "bio": "Not define try"
+    },
+    {
+      "id": "4432",
+      "username": "mata",
+      "email": "mata@gmail.com",
+      "password": "123456",
+      "phone": "try update",
+      "address": "try update",
+      "bio": "Not define yet"
+    },
+    {
+      "id": "06bc",
+      "username": "Gaara",
+      "email": "Gaara@gmail.com",
+      "password": "1234567",
+      "phone": "67777",
+      "address": "Akwa",
+      "bio": "Not def"
+    },
+    {
+      "id": "48ea",
+      "username": "Green",
+      "email": "Green@gmail.com",
+      "password": "123456",
+      "phone": "666",
+      "address": "Update address ",
+      "bio": "Update bio"
+    }
+  ],
+  "profile": [
+    {
+      "username": "moga",
       "email": "moga@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "7538",
-      "username": "Man",
-      "email": "Man@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "5bda",
-      "username": "Try",
-      "email": "Try@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "3883",
-      "username": "Try",
-      "email": "Try@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "7398",
-      "username": "Tryu",
-      "email": "Truy@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "6969",
-      "username": "Tre",
-      "email": "tre@mail.com",
-      "password": "123456"
-    },
-    {
-      "id": "a6ea",
-      "username": "Treu",
-      "email": "tre@mail.com",
-      "password": "123456"
+      "password": "123456",
+      "phone": "6432598",
+      "address": "Avenu Kennedy",
+      "bio": "Je suis une personne qui adore les do",
+      "id": "ac6e"
     }
-  ],
-  "comments": [
-    {
-      "id": "1",
-      "text": "a comment about post 1",
-      "postId": "1"
-    },
-    {
-      "id": "2",
-      "text": "another comment about post 1",
-      "postId": "1"
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

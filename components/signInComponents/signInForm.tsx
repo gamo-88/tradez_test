@@ -56,8 +56,13 @@ console.log(response.status)
           if (user.password === password) {
             // Si le mot de passe est correct, on connecte l'utilisateur et on passe a l'index de l'app 
             dispatch(setCurrentUser({
+              id: user.id,
               username: user.username,
               email: user.email,
+              password: '',
+              phone: 'Not define yet',
+              address: 'Not define yet',
+              bio: 'Not define yet',
               isConnected: true,
             }));
             router.push("/application");
@@ -78,7 +83,7 @@ console.log(response.status)
         icon={<Ionicons name="person-outline" size={28} />}
         value={userName}
         placeholder="Name"
-        onChangeText={(value: string) => setUserName(value)}
+        onChangeText={(value: string) => setUserName(value.trim())}
       />
 
       <View className="relative">
