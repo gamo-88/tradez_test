@@ -8,6 +8,8 @@ import axios from "axios";
 
 import { useDispatch } from 'react-redux';  // Importer useDispatch
 import { setCurrentUser } from '../../userSlice';  // Importer l'action
+import { validateForm } from "@/helper/validatorSignIn";
+import { getApiUrl } from "@/helper/getApiUrl";
 
 export default function SignInForm() {
   const [userName, setUserName] = useState("");
@@ -16,32 +18,13 @@ export default function SignInForm() {
 
   const dispatch = useDispatch();  // Initialiser le dispatch
 
-  // Validation du formulaire
-  const validateForm = () => {
-    if (!userName) {
-      Alert.alert("Validation Error: ", "Please enter your name.");
-      return false;
-    }
-
-    if (!password || password.length < 6) {
-      Alert.alert("Validation Error", "Password must be at least 6 characters.");
-      return false;
-    }
-    return true;
-  };
 
   // Fonction pour obtenir l'URL API en fonction de la plateforme
-  const getApiUrl = () => {
-    if (Platform.OS === "web") {
-      return "http://localhost:3000"; 
-    }
-    // Pour mobile, utilisez l'IP locale de votre machine
-    return process.env.EXPO_PUBLIC_IP_API_URL; 
-  };
+
 
   // Fonction de soumission du formulaire
   const handleSubmit = async () => {
-    if (validateForm()) {
+    if (validateForm(userName, password)) {
       try {
         const response = await axios.get(
           `${getApiUrl()}/users?username=${userName}`

@@ -74,6 +74,18 @@
       "phone": "666",
       "address": "Update address ",
       "bio": "Update bio"
+    },
+    {
+      "id": "5512",
+      "username": "test",
+      "email": "test@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "4411",
+      "username": "Phone",
+      "email": "Phone@gmail.com",
+      "password": "123456"
     }
   ],
   "profile": [

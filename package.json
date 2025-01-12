@@ -20,12 +20,14 @@
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "@reduxjs/toolkit": "^2.5.0",
+    "apisauce": "^3.1.0",
     "axios": "^1.7.9",
     "expo": "~52.0.24",
     "expo-blur": "~14.0.1",
     "expo-constants": "~17.0.3",
     "expo-font": "~13.0.2",
     "expo-haptics": "~14.0.0",
+    "expo-image-picker": "~16.0.4",
     "expo-linking": "~7.0.3",
     "expo-router": "~4.0.16",
     "expo-splash-screen": "~0.29.19",
@@ -49,8 +51,7 @@
     "redux-persist": "^6.0.0",
     "sonner": "^1.7.1",
     "tailwindcss": "^3.4.17",
-    "zustand": "^5.0.3",
-    "expo-image-picker": "~16.0.4"
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

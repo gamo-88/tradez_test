@@ -86,17 +86,17 @@ export default function SignUpForm() {
     if (validateForm()) {
         try {
             const response = await axios.post(`${getApiUrl()}/users`,{
-                username: userName.trim(),
-                email: email.trim(),
-                password: password.trim()
+                username: userName,
+                email: email,
+                password: password
              });
              console.log(response.status)
              if (response.status === 201){
               console.log(response.data)
                             dispatch(setCurrentUser({
                               id: userId,
-                              username: userName.trim(),
-                              email: email.trim(),
+                              username: userName,
+                              email: email,
                               isConnected: true,
                               password: '',
                               phone: 'Not define yet',
