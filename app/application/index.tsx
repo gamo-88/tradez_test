@@ -17,6 +17,8 @@ import SeeProfileModal from "@/components/profileComponents/SeeProfileModal";
 import * as ImagePicker from "expo-image-picker";
 import EditProfileModal from "@/components/profileComponents/EditProfileModal";
 import { logOutCurrentUser } from "@/userSlice";
+import SeePreferencesModal from "@/components/profileComponents/PrefferencesModal";
+import { usePickImage } from "@/hooks/usePickImage";
 
 export default function ProfileScreen() {
   const logoUrl = require("../../assets/images/tradePic4.webp");
@@ -31,7 +33,6 @@ export default function ProfileScreen() {
   const [isProfileModalVisible, setProfileModalVisible] = useState(false);
   const [isEditModalVisible, setEditModalVisible] = useState(false);
   const [isPreferencesModalVisible, setPreferencesModalVisible] = useState(false);
-  const [profilePicture, setProfilePicture] = useState<string | undefined>();
 
   const handleLogout = () => {
     if (Platform.OS === "web") {
@@ -74,33 +75,14 @@ export default function ProfileScreen() {
 
   // ouverture/fermeture de la modal edition
   const toggleEditModal = () => setEditModalVisible(!isEditModalVisible);
+  const togglePrefferencesModal = () => setPreferencesModalVisible(!isPreferencesModalVisible);
 
   const handleSaveEdits = () => {
     console.log("Informations modifiées");
     setEditModalVisible(false);
   };
 
-  const pickImage = async () => {
-    // demander la permission pour ouvrir la camera sur mobile
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (status !== "granted") {
-      alert("Permission d'accès à la galerie refusée.");
-      return;
-    }
-
-    // Ouvrir la galerie pour sélectionner une image
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      setProfilePicture(result.assets[0].uri);
-    }
-  };
+  const {pickImage, profilePicture} = usePickImage()
 
   return (
     <ScreenWrapper>
@@ -175,7 +157,10 @@ export default function ProfileScreen() {
             </TouchableOpacity>
 
             {/* les preferences en trading */}
-            <TouchableOpacity className="flex-row items-center justify-between bg-blue-500 p-4 rounded-xl mb-4">
+            <TouchableOpacity 
+              onPress={togglePrefferencesModal}
+            
+            className="flex-row items-center justify-between bg-blue-500 p-4 rounded-xl mb-4">
               <Text className="text-white font-semibold text-lg">
                 Preferences
               </Text>
@@ -198,26 +183,25 @@ export default function ProfileScreen() {
         </View>
       </View>
 
-      {/* Modal: Voir le Profil */}
+      {/* modal voir le profil */}
       <SeeProfileModal
         visible={isProfileModalVisible}
         onClose={toggleProfileModal}
       />
 
-      {/* Edit Profile Modal */}
+      {/* modal editer le profil */}
       <EditProfileModal
         visible={isEditModalVisible}
         onClose={toggleEditModal}
         onSave={handleSaveEdits}
       />
 
-            {/* Edit Profile Modal */}
-            <EditProfileModal
-        visible={isEditModalVisible}
-        onClose={toggleEditModal}
-        onSave={handleSaveEdits}
-      />
+      {/* modal voir les prefferences () */}
 
+<SeePreferencesModal
+        visible={isPreferencesModalVisible}
+        onClose={togglePrefferencesModal}
+      />
 
       
     </ScreenWrapper>

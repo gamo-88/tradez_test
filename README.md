@@ -1,6 +1,6 @@
 # Welcome to your Tradez test app 👋
 
-Ce Repos est une app qui utilise l'api d'alpaca pour voir ses informations sur ses, positions, activites, de son compte lie a alpaca
+Ce Repos est une app qui utilise l'api d'alpaca pour voir ses informations sur ses, positions, activites(Prefferences) , de son compte lie a alpaca
 This is an Expo App ...
 
 ## Get started

@@ -1,4 +1,3 @@
-import { getApiUrl } from "@/helper/getApiUrl";
 import { RootState } from "@/store";
 import { User } from "@/userSlice";
 import axios from "axios";
@@ -7,20 +6,27 @@ import React, { useState, useCallback } from "react";
 import { Modal, View, Text, TouchableOpacity, ActivityIndicator, Platform } from "react-native";
 import { useSelector } from "react-redux";
 
-interface SeeProfileModalProps {
+interface PrefferencesModalProps {
   visible: boolean;
   onClose: () => void;
 }
 
+const getApiUrl = () => {
+  // Simplification de la gestion de l'URL de l'API
+  if (Platform.OS === "web") {
+    return "http://localhost:3000"; // Changez-le selon votre environnement
+  }
+  return process.env.EXPO_PUBLIC_IP_API_URL ?? "http://localhost:3000"; // API mobile
+};
 
-export default function SeeProfileModal({ visible, onClose }: SeeProfileModalProps) {
+export default function SeePreferencesModal({ visible, onClose }: PrefferencesModalProps) {
   const user = useSelector((state: RootState) => state.user);
 
   const [userProfile, setUserProfile] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // recuperer les données du profil
+  // Fonction pour récupérer les données du profil
   const fetchProfile = useCallback(async () => {
     if (!user.username) return;
 
@@ -33,7 +39,7 @@ export default function SeeProfileModal({ visible, onClose }: SeeProfileModalPro
         setError("No user data found.");
         setUserProfile(null);
       } else {
-        setUserProfile(response.data[0]); 
+        setUserProfile(response.data[0]); // On suppose qu'il y a un seul utilisateur avec ce nom
       }
     } catch (error) {
       setError("An error occurred while fetching the profile.");
@@ -43,6 +49,7 @@ export default function SeeProfileModal({ visible, onClose }: SeeProfileModalPro
     }
   }, [user.username]);
 
+  // Utilisation de useFocusEffect pour récupérer les données à l'ouverture de la modal
   useFocusEffect(
     useCallback(() => {
       if (visible) {
