@@ -17,6 +17,15 @@
       "phone": "Not define yet",
       "address": "Not define yet",
       "bio": "Not define yet"
+    },
+    {
+      "id": "6624",
+      "username": "kamga",
+      "email": "kamga@mail.com",
+      "password": "123456",
+      "phone": "77777777",
+      "address": "bepanda",
+      "bio": "love for money"
     }
   ],
   "profile": [
