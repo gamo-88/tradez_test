@@ -32,11 +32,13 @@ This is an Expo App ...
 
 ## Handle the project
 
-### This project is running with a specific alpca account so make sur to change Api key, and secret Api key in the file alpacaConfig.js at the root of this project [the file](./alpacaConfig.js).
+### This project is running with a specific alpca account so make sur to change Api key, and secret Api key in the file alpacaConfig.js at the root of this project [the file](./alpacaConfig.js) or you will use my account (no money in portofilio !).
 
-how to config :                 
+#### How to config :                 
             "APCA-API-KEY-ID": {YOUR-OWN.ALPACA_API_KEY_ID},  
-            "APCA-API-SECRET-KEY": {YOUR-OWN.ALPACA_API_SECRET_KEY}  
+            "APCA-API-SECRET-KEY": {YOUR-OWN.ALPACA_API_SECRET_KEY} 
+
+### Le scrpit [Node](./scripts/updateEnv.js) permet de fournir l'ip de la machine, le mettre dans une variable d'environnement a fin que le telephone puisse effectuer les appelles api sur json-server de la machine de facon automatique. Il est possible de supprimer le script et d'aller mettre manuellement la variable d'environnement en suivant la syntaxe: EXPO_PUBLIC_IP_API_URL =  "votre_address_ip".     
  
 
 ## Facilties
@@ -55,6 +57,6 @@ how to config :
 
 Contsct
 
-- Gmail:(maximegamo@gmail.com ).
+- Gmail: maximegamo@gmail.com 
 
 <!-- 61f36e0c-60ed-48c9-8d93-805c49c6a98e -->
