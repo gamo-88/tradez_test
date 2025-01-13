@@ -22,7 +22,7 @@ export default function WelcomeScreen() {
               resizeMode="cover"
               className="h-20 w-20 md:h-7 md:w-7"
             />
-            <Text className="text-3xl font-bold text-blue-600  text-center">
+            <Text className="text-3xl font-bold text-blue-600  text-center ">
               TRADEZ
             </Text>
           </Pressable>

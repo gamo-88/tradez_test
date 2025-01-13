@@ -95,7 +95,7 @@ export default function ProfileScreen() {
 
       <View className="flex-1 items-center justify-center bg-gray-100 px-4 py-2">
         {/* Image de profil */}
-        <View className="mb-5 h-[12rem] w-full bg-blue-600 md:pt-12 pt-4 pl-4">
+        <View className="mb-5 h-[12rem] w-full bg-blue-600 md:pt-12 pt-4 pl-4 rounded-lg">
           {profilePicture ? (
             <TouchableOpacity onPress={() => pickImage()}>
               <Image
