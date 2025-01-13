@@ -59,9 +59,9 @@ export default function SignUpForm() {
                               email: email,
                               isConnected: true,
                               password: '',
-                              phone: 'Not define yet',
-                              address: 'Not define yet',
-                              bio: 'Not define yet',
+                              phone: '-- define --',
+                              address: '-- define --',
+                              bio: '-- define --',
                             }));
                 router.push("/application");
 

@@ -29,6 +29,8 @@ export default function WelcomeScreen() {
         </View>
         {/* bouton pour aller a la page de connexion */}
         <View className="flex-row gap-4 items-baseline justify-start mt-2">
+          
+          
           <Button
             title="Sign In"
             onPress={() => router.push("/(auth)/sign-in")}
