@@ -70,7 +70,7 @@ export default function SignInForm() {
         icon={<Ionicons name="person-outline" size={28} />}
         value={userName}
         placeholder="Name"
-        onChangeText={(value: string) => setUserName(value.trim())}
+        onChangeText={(value: string) => setUserName(value)}
       />
 
       <View className="relative">
