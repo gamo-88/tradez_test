@@ -29,8 +29,8 @@ export default function ProfileScreen() {
   // États pour gérer l'affichage des modales
   const [isProfileModalVisible, setProfileModalVisible] = useState(false);
   const [isEditModalVisible, setEditModalVisible] = useState(false);
-  const [isPreferencesModalVisible, setPreferencesModalVisible] = useState(false);
-    
+  const [isPreferencesModalVisible, setPreferencesModalVisible] =
+    useState(false);
 
   const handleLogout = () => {
     if (Platform.OS === "web") {
@@ -81,6 +81,7 @@ export default function ProfileScreen() {
   };
 
   const { pickImage, profilePicture } = usePickImage();
+  const [showHoverMessage, setShowHoverMessage] = useState(false);
 
   return (
     <ScreenWrapper>
@@ -97,7 +98,10 @@ export default function ProfileScreen() {
         {/* Image de profil */}
         <View className="mb-5 h-[12rem] w-full bg-blue-600 md:pt-12 pt-4 pl-4 rounded-lg">
           {profilePicture ? (
-            <TouchableOpacity onPress={() => pickImage()}>
+            <TouchableOpacity
+              className=" h-[150px] w-[150px] md:w-[300px] md:h-[300px] bg-slate-400 rounded-full"
+              onPress={() => pickImage()}
+            >
               <Image
                 source={{
                   uri: profilePicture,
@@ -106,7 +110,14 @@ export default function ProfileScreen() {
               />
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={() => pickImage()}>
+            <TouchableOpacity
+              className=" h-[150px] w-[150px] md:w-[300px] md:h-[300px] bg-slate-400 rounded-full relative"
+              onPress={() => pickImage()}
+            >
+              <View className="absolute z-30 right-1/2 top-1/2 transform translate-x-1/2 flex justify-center items-center">
+                <Text className="text-white text-center font-semibold"> Edit your Profile Picture</Text>
+                <Ionicons name="create-outline" size={40} color={"white"}></Ionicons>
+              </View>
               <Image
                 source={{
                   uri: "https://placekitten.com/200/200",

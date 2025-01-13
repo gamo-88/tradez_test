@@ -1,31 +1,19 @@
 {
   "users": [
     {
-      "id": "49d4",
+      "id": "35bc",
       "username": "gamo",
       "email": "gamo@gmail.com",
-      "password": "",
-      "phone": "update phone",
-      "address": "update Address",
-      "bio": "updated bio"
-    },
-    {
-      "id": "b4eb",
-      "username": "kameni",
-      "email": "kameni@gmail.com",
       "password": "123456",
-      "phone": "Not define yet",
-      "address": "Not define yet",
-      "bio": "Not define yet"
-    },
-    {
-      "id": "6624",
-      "username": "kamga",
-      "email": "kamga@mail.com",
-      "password": "123456",
-      "phone": "77777777",
+      "phone": "9999",
       "address": "bepanda",
-      "bio": "love for money"
+      "bio": "loocking for something in this world"
+    },
+    {
+      "id": "accb",
+      "username": "Phone",
+      "email": "Phone@gmail.com",
+      "password": "123456"
     }
   ],
   "profile": [
