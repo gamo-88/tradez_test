@@ -10,6 +10,10 @@ import axios from 'axios';
 // import { User } from "@/store";
 import { useDispatch } from 'react-redux';  
 import { setCurrentUser, User } from '../../userSlice'; 
+import { getApiUrl } from "@/helper/getApiUrl";
+import { validateEmail } from "@/helper/validateEmail";
+import { useFetchAllUsers } from "@/hooks/useFetchAllUsers";
+import { useSignUpFormValidation } from "@/hooks/useSignUpFormValidation";
 
 
 
@@ -22,64 +26,20 @@ export default function SignUpForm() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const [allUser, setAllUser] = useState<User[]>([]);
 
   const dispatch = useDispatch();
 
-  const getApiUrl = () => {
-    if (Platform.OS === "web") {
-        // Utilisation de localhost pour le web
-      return "http://localhost:3000"; 
-    }
-
-    return process.env.EXPO_PUBLIC_IP_API_URL; 
-  };
-
-  async function getAllUsername() {
-    try {
-      const response = await axios.get(`${getApiUrl()}/users`,);
-      console.log(response.data);
-      setAllUser(response.data)
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
 
-    const validateForm = () => {
-        if (!userName) {
-          Alert.alert("Validation Error: ", "Please enter your name.");
-          alert("Validation Error: Please enter your name.")
-          return false;
-        }
-
-        if (!email || !validateEmail(email)) {
-          Alert.alert("Validation Error: ", "Please enter a valid email.");
-          alert("Validation Error: Please enter a valid email.");
-          return false;
-        }
-
-        if (!password || password.length < 6) {
-          Alert.alert("Validation Error", "Password must be at least 6 characters.");
-          alert("Validation Error: Password must be at least 6 characters.");
-          return false;
-        }
-
-        let nameUsed = allUser.find( user => user.username === userName )
-        if (nameUsed) {
-            Alert.alert("No luck", "This username is taken");
-            alert("The user name is already taken");
-            return false;
-        }
 
 
-        return true;
-      };
+  const {allUser, loading, error} = useFetchAllUsers()
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailRegex.test(email);
-  };
+  const validateForm = useSignUpFormValidation(userName, email, password, allUser)
+
+
+
+
 
   // Fonction de soumission du formulaire
   const handleSubmit = async () => {
@@ -113,11 +73,7 @@ export default function SignUpForm() {
     }
   };
 
-  useEffect(() => {
-    getAllUsername()
-  
 
-  }, [])
   
 
   return (

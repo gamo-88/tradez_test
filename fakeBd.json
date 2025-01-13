@@ -10,82 +10,13 @@
       "bio": "updated bio"
     },
     {
-      "id": "2468",
-      "username": "gamou",
-      "email": "gamo@mail.com",
-      "password": "",
+      "id": "b4eb",
+      "username": "kameni",
+      "email": "kameni@gmail.com",
+      "password": "123456",
       "phone": "Not define yet",
       "address": "Not define yet",
       "bio": "Not define yet"
-    },
-    {
-      "id": "5e48",
-      "username": "gama",
-      "email": "fde@mail.com",
-      "password": "123456"
-    },
-    {
-      "id": "403a",
-      "username": "moga",
-      "email": "moga@gmail.com",
-      "password": "123456",
-      "phone": "6432598",
-      "address": "Avenu Kennedy",
-      "bio": "Je suis une personne qui adore les do"
-    },
-    {
-      "id": "8671",
-      "username": "tarantino",
-      "email": "tarantino@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "4303",
-      "username": "rand",
-      "email": "rand@mail.com",
-      "password": "",
-      "phone": "Not define up",
-      "address": "Not define ip",
-      "bio": "Not define try"
-    },
-    {
-      "id": "4432",
-      "username": "mata",
-      "email": "mata@gmail.com",
-      "password": "123456",
-      "phone": "try update",
-      "address": "try update",
-      "bio": "Not define yet"
-    },
-    {
-      "id": "06bc",
-      "username": "Gaara",
-      "email": "Gaara@gmail.com",
-      "password": "1234567",
-      "phone": "67777",
-      "address": "Akwa",
-      "bio": "Not def"
-    },
-    {
-      "id": "48ea",
-      "username": "Green",
-      "email": "Green@gmail.com",
-      "password": "123456",
-      "phone": "666",
-      "address": "Update address ",
-      "bio": "Update bio"
-    },
-    {
-      "id": "5512",
-      "username": "test",
-      "email": "test@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "4411",
-      "username": "Phone",
-      "email": "Phone@gmail.com",
-      "password": "123456"
     }
   ],
   "profile": [

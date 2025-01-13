@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
-import { useFocusEffect } from "expo-router";
+import { View, Text, ActivityIndicator, Pressable, Image } from "react-native";
+import { useFocusEffect, useRouter } from "expo-router";
 import ScreenWrapper from "@/components/common/screenWrapper";
 import alpacaApi from "../../services/alpaca"; 
 import { Ionicons } from "@expo/vector-icons";
@@ -18,10 +18,16 @@ interface Position {
 }
 
 export default function AppScreen() {
+  // const logoUrl = require("../../assets/images/tradePic4.webp");
+    const router = useRouter();
+  
+
+
   const [buyingPower, setBuyingPower] = useState<number>(0);
   const [cash, setCash] = useState<number>(0);
   const [longMarketValue, setLongMarketValue] = useState<number>(0);
   const [portfolioValue, setPortfolioValue] = useState<number>(0);
+  const [accountNumber, setAccountNumber] = useState<number>(0);
 
   const [positions, setPositions] = useState<Position[]>([]); 
 
@@ -44,6 +50,7 @@ export default function AppScreen() {
             setCash(res.data.cash);
             setLongMarketValue(res.data.long_market_value);
             setPortfolioValue(res.data.portfolio_value);
+            setAccountNumber(res.data.account_number)
           } else {
             setError("Failed to fetch account data.");
           }
@@ -80,6 +87,19 @@ export default function AppScreen() {
  
   return (
     <ScreenWrapper>
+        {/* logo avec text */}
+        <View className=" flex-col items-center">
+          <Pressable onPress={() => router.push("/")}>
+            {/* <Image
+              source={logoUrl}
+              resizeMode="cover"
+              className="h-20 w-20 md:h-7 md:w-7"
+            /> */}
+            <Text className="text-3xl font-bold text-blue-600  text-center">
+              TRADEZ
+            </Text>
+          </Pressable>
+        </View>
       <View className="flex-1 justify-center items-center bg-gray-100 p-4">
         {loading ? (
           <ActivityIndicator size="large" color="#0000ff" />
@@ -88,6 +108,7 @@ export default function AppScreen() {
         ) : (
           <View className="w-full max-w-lg">
             <Text className="text-xl font-bold mb-4">Account Information</Text>
+            <Text className="text-xl font-bold mb-4">Num-{accountNumber}</Text>
             <View className="flex flex-row flex-wrap gap-x-2 text-xl">
               <View className="flex flex-col flex-1">
                 <Text className="mb-2 h-16">Buying Power: </Text>

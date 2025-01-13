@@ -1,54 +1,60 @@
-# Welcome to your Expo app 👋
+# Welcome to your Tradez test app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Ce Repos est une app qui utilise l'api d'alpaca pour voir ses informations sur ses, positions, activites, de son compte lie a alpaca
+This is an Expo App ...
 
 ## Get started
-
+   - ###   Please proceed as follows
 1. Install dependencies
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Start script to charge env variable for json-server base url
 
    ```bash
-    npx expo start
+    npm run env
    ```
 
-In the output, you'll find options to open the app in a
+3. Start Running the local server on port :3000
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+    npm run server
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+4. Start the app with expo
 
-## Get a fresh project
+   ```bash
+    npm start
+   ```
 
-When you're ready, run:
 
-```bash
-npm run reset-project
-```
+## Handle the project
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### This project is running with a specific alpca account so make sur to change Api key, and secret Api key in the file alpacaConfig.js at the root of this project [the file](./alpacaConfig.js).
 
-## Learn more
+how to config :                 
+            "APCA-API-KEY-ID": {YOUR-OWN.ALPACA_API_KEY_ID},  
+            "APCA-API-SECRET-KEY": {YOUR-OWN.ALPACA_API_SECRET_KEY}  
+ 
 
-To learn more about developing your project with Expo, look at the following resources:
+## Facilties
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+- You can run  a single command to run the project if there is no processus on the :3000 port
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   ```bash
+    npm run dev
+   ```
 
 
 
-61f36e0c-60ed-48c9-8d93-805c49c6a98e
+
+## Join me if any request.
+
+Contsct
+
+- Gmail:(maximegamo@gmail.com ).
+
+<!-- 61f36e0c-60ed-48c9-8d93-805c49c6a98e -->

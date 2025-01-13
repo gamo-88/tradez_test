@@ -3,7 +3,10 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "node updateEnv.js & json-server fakeBd.json -p 3000 & expo start",
+    "dev": "node ./scripts/updateEnv.js & json-server fakeBd.json -p 3000 & expo start",
+    "start": "expo start",
+    "env": "node ./scripts/updateEnv.js",
+    "server": "json-server fakeBd.json -p 3000",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",

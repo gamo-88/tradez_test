@@ -6,6 +6,7 @@ import {
   Image,
   Alert,
   Platform,
+  Pressable,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
@@ -18,12 +19,18 @@ import EditProfileModal from "@/components/profileComponents/EditProfileModal";
 import { logOutCurrentUser } from "@/userSlice";
 
 export default function ProfileScreen() {
+  const logoUrl = require("../../assets/images/tradePic4.webp");
+  
+  
+  
+  
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   // États pour gérer l'affichage des modales
   const [isProfileModalVisible, setProfileModalVisible] = useState(false);
   const [isEditModalVisible, setEditModalVisible] = useState(false);
+  const [isPreferencesModalVisible, setPreferencesModalVisible] = useState(false);
   const [profilePicture, setProfilePicture] = useState<string | undefined>();
 
   const handleLogout = () => {
@@ -97,6 +104,17 @@ export default function ProfileScreen() {
 
   return (
     <ScreenWrapper>
+
+        {/* logo avec text */}
+        <View className=" flex-col items-center">
+          <Pressable onPress={() => router.push("/")}>
+            <Text className="text-3xl font-bold text-blue-600  text-center">
+              TRADEZ
+            </Text>
+          </Pressable>
+        </View>
+
+
       <View className="flex-1 items-center justify-center bg-gray-100 px-4 py-2">
         {/* Image de profil */}
         <View className="mb-5 h-[12rem] w-full bg-blue-600 md:pt-12 pt-4 pl-4">
@@ -192,6 +210,16 @@ export default function ProfileScreen() {
         onClose={toggleEditModal}
         onSave={handleSaveEdits}
       />
+
+            {/* Edit Profile Modal */}
+            <EditProfileModal
+        visible={isEditModalVisible}
+        onClose={toggleEditModal}
+        onSave={handleSaveEdits}
+      />
+
+
+      
     </ScreenWrapper>
   );
 }

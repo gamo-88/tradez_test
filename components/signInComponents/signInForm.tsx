@@ -6,8 +6,8 @@ import Button from "../common/button";
 import { router } from "expo-router";
 import axios from "axios";
 
-import { useDispatch } from 'react-redux';  // Importer useDispatch
-import { setCurrentUser } from '../../userSlice';  // Importer l'action
+import { useDispatch } from "react-redux"; // Importer useDispatch
+import { setCurrentUser } from "../../userSlice"; // Importer l'action
 import { validateForm } from "@/helper/validatorSignIn";
 import { getApiUrl } from "@/helper/getApiUrl";
 
@@ -16,11 +16,9 @@ export default function SignInForm() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const dispatch = useDispatch();  // Initialiser le dispatch
-
+  const dispatch = useDispatch(); // Initialiser le dispatch
 
   // Fonction pour obtenir l'URL API en fonction de la plateforme
-
 
   // Fonction de soumission du formulaire
   const handleSubmit = async () => {
@@ -29,25 +27,28 @@ export default function SignInForm() {
         const response = await axios.get(
           `${getApiUrl()}/users?username=${userName}`
         );
-console.log(response.status)
+        console.log(response.status);
         if (response.data.length === 0) {
           Alert.alert("Wrong credentials", "No user found with this username.");
         } else {
-          // Vérification du mot de passe
-          const user = response.data[0]; 
+          const user = response.data[0];
+
+          // verifi le mot de passe
 
           if (user.password === password) {
-            // Si le mot de passe est correct, on connecte l'utilisateur et on passe a l'index de l'app 
-            dispatch(setCurrentUser({
-              id: user.id,
-              username: user.username,
-              email: user.email,
-              password: '',
-              phone: 'Not define yet',
-              address: 'Not define yet',
-              bio: 'Not define yet',
-              isConnected: true,
-            }));
+            // le mot de passe  correct
+            dispatch(
+              setCurrentUser({
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                password: "",
+                phone: "Not define yet",
+                address: "Not define yet",
+                bio: "Not define yet",
+                isConnected: true,
+              })
+            );
             router.push("/application");
           } else {
             Alert.alert("Wrong credentials", "Incorrect password.");
@@ -55,7 +56,10 @@ console.log(response.status)
         }
       } catch (error) {
         console.log(error);
-        Alert.alert("Error", "An error occurred while processing your request.");
+        Alert.alert(
+          "Error",
+          "An error occurred while processing your request."
+        );
       }
     }
   };
