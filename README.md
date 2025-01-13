@@ -1,7 +1,6 @@
 # Welcome to your Tradez test app 👋
 
-Ce Repos est une app qui utilise l'api d'alpaca pour voir ses informations sur ses, positions, activites(Prefferences) , de son compte lie a alpaca
-This is an Expo App ...
+This repository is an app that uses the Alpaca API to view information about your positions, activities (Preferences), and your Alpaca-linked account.
 
 ## Get started
    - ###   Please proceed as follows
@@ -39,8 +38,9 @@ This is an Expo App ...
             "APCA-API-KEY-ID": {YOUR-OWN.ALPACA_API_KEY_ID},  
             "APCA-API-SECRET-KEY": {YOUR-OWN.ALPACA_API_SECRET_KEY} 
 
-### Le scrpit [Node](./scripts/updateEnv.js) permet de fournir l'ip de la machine, le mettre dans une variable d'environnement a fin que le telephone puisse effectuer les appelles api sur json-server de la machine de facon automatique. Il est possible de supprimer le script et d'aller mettre manuellement la variable d'environnement en suivant la syntaxe: EXPO_PUBLIC_IP_API_URL =  "votre_address_ip".     
+   
  
+ ### The script [Node](./scripts/updateEnv.js) provides the machine's IP and sets it in an environment variable so the phone can make API calls to the JSON server on the machine automatically. You can delete the script and manually set the environment variable by following the syntax: EXPO_PUBLIC_IP_API_URL = "your_ip_address". All this in a .env file 
 
 ## Facilties
 
